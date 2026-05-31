@@ -1,704 +1,442 @@
 <!DOCTYPE html>
-<html lang="zxx">
-  <head>
-    <meta charset="utf-8" />
-    <title>Saif Portfolio</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-    <!-- font awesome -->
-    <link rel="stylesheet" type="text/css" href="css/font-awesome.css" />
-    <!-- main css -->
-    <link rel="stylesheet" type="text/css" href="css/style.css" />
-    <link rel="stylesheet" type="text/css" href="css/responsive.css" />
-    <!-- default color css  -->
-    <link rel="stylesheet" href="css/skins/color-1.css" disabled>
-    <link rel="stylesheet" href="css/style-switcher.css">
-    <!-- theme colors -->
-    <link rel="stylesheet" class="alternate-style" title="color-1" href="/css/skins/color-1.css" disabled>
-    <link rel="stylesheet" class="alternate-style" title="color-2" href="/css/skins/color-2.css" disabled>
-    <link rel="stylesheet" class="alternate-style" title="color-3" href="/css/skins/color-3.css" disabled>
-    <link rel="stylesheet" class="alternate-style" title="color-4" href="/css/skins/color-4.css">
-    <link rel="stylesheet" class="alternate-style" title="color-5" href="/css/skins/color-5.css" disabled>
-    <!-- fav icon  -->
-    <link rel="shortcut icon" href="favicon.ico">
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-EWKPG5QGP3"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Saif Manihar — Full Stack Developer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600&family=Fira+Code:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#050913;
+  --bg2:#080f1e;
+  --bg3:#0c1628;
+  --card:#091120;
+  --a1:#f5a623;
+  --a2:#ff4d6d;
+  --a3:#00d4ff;
+  --text:#f0ece3;
+  --muted:#5a6a8a;
+  --border:#0f2040;
+  --grad:linear-gradient(135deg,var(--a1),var(--a2));
+  --grad2:linear-gradient(135deg,var(--a2),var(--a3));
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Outfit',sans-serif;overflow-x:hidden}
+::selection{background:var(--a1);color:var(--bg)}
+::-webkit-scrollbar{width:3px}
+::-webkit-scrollbar-thumb{background:var(--grad)}
 
-    gtag('config', 'G-EWKPG5QGP3');
-  </script>
+/* ── CURSOR ── */
+.cur{position:fixed;pointer-events:none;z-index:9999;mix-blend-mode:exclusion}
+.cur-dot{width:8px;height:8px;background:#fff;border-radius:50%;transition:transform .1s}
+.cur-circle{position:fixed;width:40px;height:40px;border-radius:50%;border:1px solid rgba(245,166,35,.5);pointer-events:none;z-index:9998;transition:all .14s ease}
 
-  </head>
-  <body class="dark">
+/* ── NAV ── */
+nav{position:fixed;top:0;inset-inline:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:1.4rem 5rem;background:rgba(5,9,19,.8);backdrop-filter:blur(24px);border-bottom:1px solid var(--border)}
+.logo{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;letter-spacing:.08em;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.nav-links{display:flex;gap:3rem;list-style:none}
+.nav-links a{font-family:'Fira Code',monospace;font-size:.72rem;color:var(--muted);text-decoration:none;letter-spacing:.1em;transition:color .2s}
+.nav-links a:hover{color:var(--a1)}
+.nav-hire{font-family:'Fira Code',monospace;font-size:.72rem;padding:.55rem 1.4rem;background:var(--grad);color:var(--bg);text-decoration:none;font-weight:500;letter-spacing:.05em;transition:opacity .2s}
+.nav-hire:hover{opacity:.85}
 
-    <!-- ========== Start pre loader ========== -->
-    <div class="preloader">
-      <div class="box">
-        <div></div>
-        <div></div>
-        <div></div>
-      </div>
+/* ── HERO ── */
+#hero{min-height:100vh;display:grid;place-items:center;padding:0 5rem;position:relative;overflow:hidden}
+.hero-orb{position:absolute;border-radius:50%;filter:blur(120px);pointer-events:none}
+.orb1{width:600px;height:600px;background:rgba(245,166,35,.07);top:-100px;right:-150px}
+.orb2{width:500px;height:500px;background:rgba(255,77,109,.06);bottom:-100px;left:-100px}
+.orb3{width:300px;height:300px;background:rgba(0,212,255,.05);top:40%;left:40%}
+.hero-inner{position:relative;z-index:2;max-width:1100px;width:100%}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:.6rem;font-family:'Fira Code',monospace;font-size:.72rem;color:var(--a1);border:1px solid rgba(245,166,35,.25);padding:.35rem 1rem;background:rgba(245,166,35,.05);margin-bottom:2rem;animation:fadeUp .8s .1s both}
+.hero-eyebrow::before{content:'';width:7px;height:7px;background:var(--a1);border-radius:50%;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(1.4)}}
+.hero-name{font-family:'Bebas Neue',sans-serif;font-size:clamp(5rem,12vw,11rem);line-height:.9;letter-spacing:.02em;margin-bottom:1rem;animation:fadeUp .8s .2s both}
+.hero-name .grad{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero-name .outline{-webkit-text-stroke:1px rgba(240,236,227,.15);-webkit-text-fill-color:transparent}
+.hero-sub{font-family:'Fira Code',monospace;font-size:clamp(.85rem,1.5vw,1.05rem);color:var(--muted);margin-bottom:2rem;min-height:1.6rem;animation:fadeUp .8s .3s both}
+.hero-desc{font-size:1.05rem;color:var(--muted);line-height:1.8;max-width:560px;margin-bottom:3rem;animation:fadeUp .8s .4s both}
+.hero-desc strong{color:var(--text)}
+.hero-btns{display:flex;gap:1rem;flex-wrap:wrap;animation:fadeUp .8s .5s both}
+.btn-main{padding:.9rem 2.2rem;background:var(--grad);color:var(--bg);font-family:'Outfit',sans-serif;font-weight:600;font-size:.9rem;text-decoration:none;display:inline-block;transition:transform .2s,box-shadow .2s;letter-spacing:.02em}
+.btn-main:hover{transform:translateY(-3px);box-shadow:0 16px 40px rgba(245,166,35,.3)}
+.btn-ghost{padding:.9rem 2.2rem;border:1px solid var(--border);color:var(--muted);font-family:'Outfit',sans-serif;font-size:.9rem;text-decoration:none;display:inline-block;transition:all .2s}
+.btn-ghost:hover{border-color:var(--a1);color:var(--a1)}
+.hero-stats{display:flex;gap:3rem;margin-top:4rem;padding-top:2.5rem;border-top:1px solid var(--border);animation:fadeUp .8s .6s both}
+.stat-num{font-family:'Bebas Neue',sans-serif;font-size:3rem;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1}
+.stat-lbl{font-family:'Fira Code',monospace;font-size:.62rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-top:.2rem}
+/* scroll indicator */
+.scroll-hint{position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.5rem;font-family:'Fira Code',monospace;font-size:.62rem;color:var(--muted);letter-spacing:.1em;animation:fadeIn 1s 1.5s both}
+.scroll-line{width:1px;height:50px;background:linear-gradient(var(--a1),transparent);animation:scrollPulse 2s infinite}
+@keyframes scrollPulse{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform:scaleY(1);transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:none}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+
+/* ── SECTION SHELL ── */
+.sec{padding:7rem 5rem;max-width:1200px;margin:0 auto}
+.sec-line{display:flex;align-items:center;gap:1rem;margin-bottom:1rem}
+.sec-num{font-family:'Bebas Neue',sans-serif;font-size:1rem;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:.15em}
+.sec-rule{flex:1;max-width:50px;height:1px;background:var(--grad)}
+.sec-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.8rem,5vw,4.5rem);letter-spacing:.03em;line-height:1;margin-bottom:1rem}
+.sec-sub{color:var(--muted);font-size:.97rem;line-height:1.75;max-width:560px;margin-bottom:4rem}
+.fade-up{opacity:0;transform:translateY(28px);transition:all .7s cubic-bezier(.16,1,.3,1)}
+.fade-up.in{opacity:1;transform:none}
+
+/* ── ABOUT ── */
+#about{border-top:1px solid var(--border)}
+.about-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:6rem;align-items:start}
+.about-text p{color:var(--muted);line-height:1.85;font-size:.96rem;margin-bottom:1.3rem}
+.about-text p strong{color:var(--text)}
+.about-text .highlight{display:inline;background:linear-gradient(transparent 60%,rgba(245,166,35,.2) 60%);padding:0 2px}
+.edu-stack{display:flex;flex-direction:column;gap:1rem}
+.edu-card{background:var(--card);border:1px solid var(--border);padding:1.6rem 1.8rem;position:relative;overflow:hidden;transition:border-color .3s}
+.edu-card:hover{border-color:rgba(245,166,35,.3)}
+.edu-card::before{content:'';position:absolute;inset:0;background:var(--grad);opacity:0;transition:opacity .3s}
+.edu-card:hover::before{opacity:.02}
+.edu-card-bar{position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--grad)}
+.edu-deg{font-weight:600;font-size:.93rem;margin-bottom:.3rem}
+.edu-school{font-size:.82rem;color:var(--muted);margin-bottom:.6rem}
+.edu-foot{display:flex;justify-content:space-between}
+.edu-cgpa{font-family:'Fira Code',monospace;font-size:.78rem;color:var(--a1)}
+.edu-yr{font-family:'Fira Code',monospace;font-size:.72rem;color:var(--muted)}
+.cert-row{margin-top:1.5rem;display:flex;flex-direction:column;gap:.5rem}
+.cert{font-family:'Fira Code',monospace;font-size:.72rem;color:var(--muted);display:flex;align-items:center;gap:.6rem;padding:.5rem 0;border-bottom:1px solid var(--border)}
+.cert::before{content:'◆';color:var(--a1);font-size:.5rem;flex-shrink:0}
+
+/* ── SKILLS ── */
+#skills{border-top:1px solid var(--border)}
+.skill-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.2rem}
+.skill-grp{background:var(--card);border:1px solid var(--border);padding:2rem;transition:all .3s;position:relative;overflow:hidden}
+.skill-grp::after{content:'';position:absolute;inset:0;background:var(--grad);opacity:0;transition:opacity .3s;pointer-events:none}
+.skill-grp:hover{border-color:rgba(245,166,35,.3);transform:translateY(-3px)}
+.skill-grp:hover::after{opacity:.02}
+.grp-head{display:flex;align-items:center;gap:.6rem;font-family:'Fira Code',monospace;font-size:.68rem;color:var(--a1);text-transform:uppercase;letter-spacing:.12em;margin-bottom:1.3rem}
+.grp-icon{font-size:1.1rem}
+.tags{display:flex;flex-wrap:wrap;gap:.45rem}
+.tag{font-family:'Fira Code',monospace;font-size:.67rem;padding:.28rem .7rem;border:1px solid var(--border);color:var(--muted);transition:all .2s;background:var(--bg2)}
+.tag:hover{border-color:var(--a1);color:var(--a1);background:rgba(245,166,35,.05)}
+.tag.hot{background:rgba(245,166,35,.08);border-color:rgba(245,166,35,.35);color:var(--a1)}
+.tag.hot2{background:rgba(255,77,109,.08);border-color:rgba(255,77,109,.35);color:var(--a2)}
+
+/* ── PROJECTS ── */
+#projects{border-top:1px solid var(--border)}
+.proj-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem}
+.proj-card{background:var(--card);border:1px solid var(--border);padding:2.5rem;position:relative;overflow:hidden;display:flex;flex-direction:column;transition:all .35s;cursor:default}
+.proj-card::before{content:'';position:absolute;inset:0;opacity:0;transition:opacity .35s;background:radial-gradient(ellipse at 0% 0%,rgba(245,166,35,.06),transparent 60%)}
+.proj-card:hover{border-color:rgba(245,166,35,.35);transform:translateY(-5px);box-shadow:0 30px 80px rgba(0,0,0,.5)}
+.proj-card:hover::before{opacity:1}
+.proj-card.big{grid-column:span 2}
+.proj-n{font-family:'Bebas Neue',sans-serif;font-size:5rem;line-height:1;color:var(--border);margin-bottom:-.5rem;transition:color .3s}
+.proj-card:hover .proj-n{color:rgba(245,166,35,.15)}
+.proj-title{font-family:'Bebas Neue',sans-serif;font-size:1.9rem;letter-spacing:.03em;margin-bottom:.9rem;transition:background .3s}
+.proj-card:hover .proj-title{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.proj-desc{color:var(--muted);font-size:.87rem;line-height:1.75;flex:1;margin-bottom:1.5rem}
+.proj-stack{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:1.5rem}
+.stk{font-family:'Fira Code',monospace;font-size:.63rem;padding:.22rem .6rem;background:var(--bg3);color:var(--muted);border:1px solid var(--border)}
+.proj-links{display:flex;gap:1.2rem;border-top:1px solid var(--border);padding-top:1.2rem}
+.plink{font-family:'Fira Code',monospace;font-size:.7rem;color:var(--muted);text-decoration:none;display:flex;align-items:center;gap:.4rem;transition:color .2s}
+.plink:hover{color:var(--a1)}
+
+/* ── EXPERIENCE ── */
+#experience{border-top:1px solid var(--border)}
+.exp-wrap{background:var(--card);border:1px solid var(--border);padding:3rem;position:relative;overflow:hidden}
+.exp-glow{position:absolute;top:-100px;right:-100px;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(245,166,35,.06),transparent 70%);pointer-events:none}
+.exp-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:2.5rem;flex-wrap:wrap;gap:1rem}
+.exp-role{font-family:'Bebas Neue',sans-serif;font-size:2.2rem;letter-spacing:.03em;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.exp-co{font-size:.92rem;color:var(--muted);margin-top:.3rem}
+.exp-badge{font-family:'Fira Code',monospace;font-size:.72rem;padding:.4rem 1rem;border:1px solid rgba(245,166,35,.3);color:var(--a1);background:rgba(245,166,35,.05);white-space:nowrap}
+.exp-ul{list-style:none;display:flex;flex-direction:column;gap:.8rem}
+.exp-ul li{display:flex;gap:.9rem;font-size:.9rem;color:var(--muted);line-height:1.65}
+.exp-ul li::before{content:'→';background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;flex-shrink:0;margin-top:.05rem;font-weight:600}
+.exp-ul li strong{color:var(--text)}
+.exp-kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:2.5rem;padding-top:2.5rem;border-top:1px solid var(--border)}
+.kpi-val{font-family:'Bebas Neue',sans-serif;font-size:2.8rem;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1}
+.kpi-lbl{font-family:'Fira Code',monospace;font-size:.62rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-top:.3rem}
+
+/* ── CONTACT ── */
+#contact{border-top:1px solid var(--border);text-align:center;padding:7rem 5rem}
+#contact .sec-line{justify-content:center}
+#contact .sec-sub{margin:0 auto 3rem}
+.avail-badge{display:inline-flex;align-items:center;gap:.6rem;font-family:'Fira Code',monospace;font-size:.75rem;color:var(--a1);border:1px solid rgba(245,166,35,.25);padding:.5rem 1.3rem;background:rgba(245,166,35,.05);margin-bottom:2.5rem}
+.avail-badge::before{content:'';width:8px;height:8px;background:var(--a1);border-radius:50%;animation:pulse 2s infinite}
+.contact-row{display:flex;flex-wrap:wrap;justify-content:center;gap:1rem;margin-bottom:3rem}
+.c-btn{display:flex;align-items:center;gap:.7rem;background:var(--card);border:1px solid var(--border);padding:.9rem 1.6rem;color:var(--muted);font-family:'Fira Code',monospace;font-size:.75rem;text-decoration:none;transition:all .2s}
+.c-btn:hover{border-color:var(--a1);color:var(--a1)}
+.c-btn .ci{font-size:1rem}
+
+/* ── FOOTER ── */
+footer{border-top:1px solid var(--border);padding:2rem 5rem;display:flex;justify-content:space-between;align-items:center;font-family:'Fira Code',monospace;font-size:.68rem;color:var(--muted)}
+footer a{color:var(--muted);text-decoration:none;transition:color .2s}
+footer a:hover{color:var(--a1)}
+.footer-grad{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-weight:600}
+
+/* ── RESPONSIVE ── */
+@media(max-width:900px){
+  nav{padding:1rem 1.5rem}
+  .nav-links{display:none}
+  #hero{padding:0 1.5rem}
+  .sec{padding:4rem 1.5rem}
+  .about-grid{grid-template-columns:1fr;gap:3rem}
+  .proj-grid{grid-template-columns:1fr}
+  .proj-card.big{grid-column:span 1}
+  .exp-kpis{grid-template-columns:repeat(3,1fr)}
+  #contact{padding:4rem 1.5rem}
+  footer{flex-direction:column;gap:.5rem;text-align:center;padding:1.5rem}
+}
+</style>
+</head>
+<body>
+
+<div class="cur" id="cur"><div class="cur-dot"></div></div>
+<div class="cur-circle" id="curCircle"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">SM.</div>
+  <ul class="nav-links">
+    <li><a href="#about">about</a></li>
+    <li><a href="#skills">skills</a></li>
+    <li><a href="#projects">projects</a></li>
+    <li><a href="#experience">experience</a></li>
+    <li><a href="#contact">contact</a></li>
+  </ul>
+  <a href="mailto:saifmanihar43@gmail.com" class="nav-hire">hire me →</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-orb orb1"></div>
+  <div class="hero-orb orb2"></div>
+  <div class="hero-orb orb3"></div>
+  <div class="hero-inner">
+    <div class="hero-eyebrow">⚡ Available for remote work worldwide</div>
+    <h1 class="hero-name">
+      <span class="grad">SAIF</span><br/>
+      <span class="outline">MANIHAR</span>
+    </h1>
+    <div class="hero-sub" id="typed"></div>
+    <p class="hero-desc">
+      Full Stack Developer from <strong>Mumbai, India.</strong> I build end-to-end web applications — backend APIs, real-time systems, responsive UIs. Clean code. On time. Every time.
+    </p>
+    <div class="hero-btns">
+      <a href="#projects" class="btn-main">See My Work</a>
+      <a href="mailto:saifmanihar43@gmail.com" class="btn-ghost">Let's Talk →</a>
     </div>
-    <!-- ========== End pre loader ========== -->
+    <div class="hero-stats">
+      <div><div class="stat-num" data-count="5">0</div><div class="stat-lbl">Projects Shipped</div></div>
+      <div><div class="stat-num" data-count="25">0</div><div class="stat-lbl">% Bugs Reduced</div></div>
+      <div><div class="stat-num">9.57</div><div class="stat-lbl">MSc CGPA</div></div>
+      <div><div class="stat-num">0</div><div class="stat-lbl">Notice Period</div></div>
+    </div>
+  </div>
+  <div class="scroll-hint">
+    <span>scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
 
-    <!-- start header  -->
-    <div class="header">
-      <div class="container">
-        <div class="row justify-content-between">
-          
-          <div class="hamburger-btn outer-shadow hover-in-shadow">
-            <i class="fas fa-bars"></i>
+<!-- ABOUT -->
+<section id="about">
+  <div class="sec">
+    <div class="sec-line"><span class="sec-num">01 — ABOUT</span><div class="sec-rule"></div></div>
+    <div class="sec-title">Who I Am</div>
+    <div class="about-grid fade-up">
+      <div class="about-text">
+        <p>I'm a <strong>23-year-old Full Stack Developer</strong> from Sion, Mumbai — finishing my Master's in Information Technology at Guru Nanak College with a <span class="highlight">9.57 CGPA</span>.</p>
+        <p>My strongest suit is the <strong>.NET ecosystem</strong> — C#, .NET Core, ASP.NET MVC, SignalR, REST APIs, SQL Server. On the frontend I work with <strong>Angular and TypeScript</strong>. I've also built with PHP (Laravel, CodeIgniter) and Java (Spring Boot), which means I can adapt quickly to whatever stack a team runs.</p>
+        <p>During my internship at Alynn Technologies I didn't just write code — I built <strong>dynamic dashboards, form systems, and live API integrations</strong>, reduced production bugs by 25%, and delivered every project on schedule. I mentored junior interns and managed code through proper Git workflows — not just committing to main.</p>
+        <p>I'm actively seeking a <strong>remote role with a US or European company</strong>. I'm not looking for something temporary. I want to grow with a team, take ownership, and ship things that matter.</p>
+      </div>
+      <div>
+        <div class="edu-stack">
+          <div class="edu-card">
+            <div class="edu-card-bar"></div>
+            <div class="edu-deg">Master's of Science — Information Technology</div>
+            <div class="edu-school">Guru Nanak College, Mumbai University</div>
+            <div class="edu-foot"><span class="edu-cgpa">CGPA 9.57 / 10</span><span class="edu-yr">2024 – 2026</span></div>
           </div>
+          <div class="edu-card">
+            <div class="edu-card-bar"></div>
+            <div class="edu-deg">Bachelor of Science — Information Technology</div>
+            <div class="edu-school">Guru Nanak College, Mumbai University</div>
+            <div class="edu-foot"><span class="edu-cgpa">CGPA 8.97 / 10</span><span class="edu-yr">2020 – 2023</span></div>
+          </div>
+        </div>
+        <div class="cert-row">
+          <div class="cert">Python Essentials 1 &amp; 2 — Cisco Networking Academy</div>
+          <div class="cert">Data Analytics &amp; Visualization — Accenture</div>
+          <div class="cert">Git Version Control — Practical Projects</div>
         </div>
       </div>
     </div>
-    <!-- end  -->
+  </div>
+</section>
 
-    <!-- navigation menu start  -->
-    <nav class="nav-menu">
-      <div class="close-nav-menu outer-shadow hover-in-shadow">&times;</div>
-      <div class="nav-menu-inner">
-        <ul>
-          <li><a href="#home" class="link-item inner-shadow active">Home</a></li>
-          <li><a href="#about" class="link-item outer-shadow hover-in-shadow">About</a></li>
-          <li><a href="#services" class="link-item outer-shadow hover-in-shadow">What I do</a></li>
-          <li><a href="#portfolio" class="link-item outer-shadow hover-in-shadow">Works</a></li>
-          <!-- <li><a href="#testimonial" class="link-item outer-shadow hover-in-shadow">Testimonial</a></li> -->
-          <li><a href="#contact" class="link-item outer-shadow hover-in-shadow">Contact</a></li>
+<!-- SKILLS -->
+<section id="skills">
+  <div class="sec">
+    <div class="sec-line"><span class="sec-num">02 — SKILLS</span><div class="sec-rule"></div></div>
+    <div class="sec-title">What I Build With</div>
+    <div class="sec-sub">Every skill below has been used in a real project — not just watched in a tutorial.</div>
+    <div class="skill-grid fade-up">
+      <div class="skill-grp">
+        <div class="grp-head"><span class="grp-icon">⚡</span>Backend — Primary</div>
+        <div class="tags">
+          <span class="tag hot">C#</span><span class="tag hot">.NET Core 6/8</span><span class="tag hot">ASP.NET MVC</span><span class="tag hot">REST APIs</span><span class="tag hot">SignalR</span><span class="tag">PHP Laravel</span><span class="tag">CodeIgniter</span><span class="tag">Spring Boot</span>
+        </div>
+      </div>
+      <div class="skill-grp">
+        <div class="grp-head"><span class="grp-icon">🎨</span>Frontend</div>
+        <div class="tags">
+          <span class="tag hot">Angular</span><span class="tag hot">TypeScript</span><span class="tag hot">HTML5</span><span class="tag hot">CSS3</span><span class="tag hot">JavaScript</span><span class="tag">Bootstrap</span><span class="tag">jQuery</span><span class="tag">AJAX</span>
+        </div>
+      </div>
+      <div class="skill-grp">
+        <div class="grp-head"><span class="grp-icon">🗄️</span>Database</div>
+        <div class="tags">
+          <span class="tag hot">SQL Server</span><span class="tag hot">MySQL</span><span class="tag">Eloquent ORM</span><span class="tag">phpMyAdmin</span><span class="tag">NoSQL basics</span>
+        </div>
+      </div>
+      <div class="skill-grp">
+        <div class="grp-head"><span class="grp-icon">🤖</span>AI &amp; Tools</div>
+        <div class="tags">
+          <span class="tag hot2">Claude AI</span><span class="tag hot2">ChatGPT</span><span class="tag hot">Git / GitHub</span><span class="tag">Postman</span><span class="tag">VS Code</span><span class="tag">Power BI</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="sec">
+    <div class="sec-line"><span class="sec-num">03 — PROJECTS</span><div class="sec-rule"></div></div>
+    <div class="sec-title">Things I've Built</div>
+    <div class="sec-sub">Real projects. Real code. Real problems solved.</div>
+    <div class="proj-grid fade-up">
+      <div class="proj-card big">
+        <div class="proj-n">01</div>
+        <div class="proj-title">Real-Time Chat Application</div>
+        <p class="proj-desc">Full-stack real-time messaging system built with Angular + .NET Core Web API. Implemented SignalR WebSocket connections for live messaging without page refresh — chat rooms, timestamps, user presence indicators, and clean responsive UI. This project demonstrates end-to-end full-stack architecture: from WebSocket server design to Angular reactive component patterns.</p>
+        <div class="proj-stack"><span class="stk">C#</span><span class="stk">.NET Core</span><span class="stk">SignalR</span><span class="stk">Angular</span><span class="stk">TypeScript</span><span class="stk">SQL Server</span><span class="stk">REST API</span></div>
+        <div class="proj-links">
+          <a href="https://github.com/Saifmanihar" target="_blank" class="plink">⌥ View on GitHub →</a>
+          <a href="https://saifmanihar.github.io/Portfolio/" target="_blank" class="plink">↗ Live Demo</a>
+        </div>
+      </div>
+      <div class="proj-card">
+        <div class="proj-n">02</div>
+        <div class="proj-title">E-Commerce Platform</div>
+        <p class="proj-desc">Full-stack vegetable e-commerce site built with C#/.NET 6 — product catalog, real-time inventory, secure auth, session management, and a dynamic shopping cart. Designed a clean SQL Server schema covering products, categories, user sessions, and orders.</p>
+        <div class="proj-stack"><span class="stk">C#</span><span class="stk">.NET 6</span><span class="stk">SQL Server</span><span class="stk">Bootstrap</span><span class="stk">jQuery</span></div>
+        <div class="proj-links"><a href="https://github.com/Saifmanihar" target="_blank" class="plink">⌥ GitHub →</a></div>
+      </div>
+      <div class="proj-card">
+        <div class="proj-n">03</div>
+        <div class="proj-title">Event Management System</div>
+        <p class="proj-desc">Laravel 10 event platform with full registration module, participant management, and a Chart.js dashboard showing live registration trends with participant-level filtering. Built with Eloquent ORM, Blade templating, and Artisan CLI.</p>
+        <div class="proj-stack"><span class="stk">PHP</span><span class="stk">Laravel 10</span><span class="stk">MySQL</span><span class="stk">Chart.js</span><span class="stk">Blade</span></div>
+        <div class="proj-links"><a href="https://github.com/Saifmanihar" target="_blank" class="plink">⌥ GitHub →</a></div>
+      </div>
+      <div class="proj-card">
+        <div class="proj-n">04</div>
+        <div class="proj-title">Rental Listing Platform</div>
+        <p class="proj-desc">Property rental/sales platform connecting owners with buyers and renters. Complete listing system — property details, image management, search filters, and user profiles. Full MVC architecture with Java Spring Boot backend.</p>
+        <div class="proj-stack"><span class="stk">Java</span><span class="stk">Spring Boot</span><span class="stk">JSP</span><span class="stk">MySQL</span><span class="stk">Bootstrap</span></div>
+        <div class="proj-links"><a href="https://github.com/Saifmanihar" target="_blank" class="plink">⌥ GitHub →</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="sec">
+    <div class="sec-line"><span class="sec-num">04 — EXPERIENCE</span><div class="sec-rule"></div></div>
+    <div class="sec-title">Where I've Worked</div>
+    <div class="fade-up">
+      <div class="exp-wrap">
+        <div class="exp-glow"></div>
+        <div class="exp-top">
+          <div>
+            <div class="exp-role">Junior Software Developer Intern</div>
+            <div class="exp-co">Alynn Technologies · Mumbai</div>
+          </div>
+          <div class="exp-badge">Feb 2024 – Jul 2024</div>
+        </div>
+        <ul class="exp-ul">
+          <li>Converted <strong>15+ Figma designs</strong> into fully responsive, production-ready Angular component UIs</li>
+          <li>Built <strong>dynamic forms, data tables, pie charts</strong> — all connected to live .NET Core backend APIs via JSON POST/GET</li>
+          <li>Developed backend business logic using <strong>.NET Core MVC</strong> framework aligned to client requirements</li>
+          <li>Achieved <strong>40% improvement in page performance</strong> through cross-browser optimisation and asset tuning</li>
+          <li>Used <strong>Git/GitHub</strong> with feature branching, pull requests, and code reviews throughout all projects</li>
+          <li>Mentored <strong>2 junior interns</strong> on frontend best practices and version control workflows</li>
         </ul>
-      </div>
-      <p class="copyright-text">&copy;  Saif </p>
-
-      <div class="fade-out-effect">
-
-      </div>
-    </nav>
-    <!-- end  -->
-
-    <!-- home section start  -->
-    <section class="home-section section active" id="home">
-      <!-- effect wrap -->
-        <div class="effect-wrap">
-          <div class="effect effect-1">
-
-          </div>
-          <div class="effect effect-2">  <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div>
-          </div>
-          <div class="effect effect-3">
-          </div>
-          <div class="effect effect-4">
-          </div>
-          <div class="effect effect-5"> 
-            <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div>
-          </div>
+        <div class="exp-kpis">
+          <div><div class="kpi-val">5</div><div class="kpi-lbl">Projects On Time</div></div>
+          <div><div class="kpi-val">25%</div><div class="kpi-lbl">Bugs Reduced</div></div>
+          <div><div class="kpi-val">40%</div><div class="kpi-lbl">Perf Boost</div></div>
         </div>
-      <!-- end -->
-      <div class="container">
-        <div class="row full-screen align-items-center">
-          <div class="home-text">
-            <p>Hello, </p>
-            <!-- ========== Start typing animation ========== -->
-            <div id="auto-typing-animation">
-              <p>I'm <br/><span class="typed-text"></span><span class="cursor">&nbsp;</span></p>
-            </div>
-            <!-- ========== End typing animation ========== -->
-            <h1>Game Designer & Developer</h1>
-            <a href="#about" class="link-item btn-1 outer-shadow hover-in-shadow">More About Me</a>
-          </div>
-
-          <div class="home-image">
-            <div class="img-box inner-shadow">
-              <img src="./img/Saif-Manihar.jpg" class="outer-shadow" alt="profile-pic" srcset="">
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- end -->
-
-    <!-- about section  -->
-    <section class="about-section section" id="about">
-      <div class="container">
-        <div class="row">
-          <div class="section-title">
-            <div class="data-heading">MAIN INFO</div>
-            <h2>About me</h2>
-          </div>
-        </div>
-        <div class="row">
-          <div class="about-img">
-            <div class="img-box inner-shadow">
-              <img src="./img/dronzer.jpg" alt="" class="outer0shadow">
-            </div>
-            </div>
-          <div class="about-info">
-            <p class="about-info-inner">
-              <!-- content will fetch from  "TODO: js/autoTypingAnimation " -->
-            </p>
-            <!-- this is a just demo text  -->
-
-            <!-- <span>Hi, this is a demo name</span>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit eius officia ea ut vonsectetur adipisicing elit. Illo voluptatum iste, tempora rem obcaecati omnis delectus sunt, consequuntur, et ut quasi aperiam assumenda! <br><br> Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ex beatae reprehenderit vero maiores dignissimos error vitae, optio inventore explicabo quia officiis magni delectus? -->
-
-
-            <a href="Saif-Manihar-Resume.pdf" class="btn-1 outer-shadow hover-in-shadow" target="next_page">View CV</a>
-            
-          </div>
-        </div>
-        <!-- about section start -->
-        <div class="row">
-          <div class="about-tabs">
-            <span class="tab-item outer-shadow active" data-target = ".skills">skills</span>
-            <span class="tab-item" data-target = ".experience">experience</span>
-            <span class="tab-item" data-target = ".education">education</span>
-          </div>
-        </div>
-        <!-- end -->
-        <!-- skill section start  -->
-      <div class="row">
-        <div class="skills tab-content active">
-          <!-- skill item -->
-          <div class="row">
-
-            <!-- ========== Start skills ========== -->
-            <div class="skill-item">
-              <p>JAVA</p>
-              <div class="progress inner-shadow">
-                <div class="progress-bar" style="width: calc(95% - 14px)">
-                  <span>95%</span>
-                </div>
-              </div>
-            </div>
-
-
-            <div class="skill-item">
-              <p>C#</p>
-              <div class="progress inner-shadow">
-                <div class="progress-bar" style="width: calc(80% - 14px);">
-                  <span>80%</span>
-                </div>
-              </div>
-            </div>
-
-
-            <div class="skill-item">
-              <p>WEB DEVELOPMENT</p>
-              <div class="progress inner-shadow">
-                <div class="progress-bar" style="width: calc(75% - 14px);">
-                  <span>75%</span>
-                </div>
-              </div>
-            </div>
-
-
-            <div class="skill-item">
-              <p>My SQL</p>
-              <div class="progress inner-shadow">
-                <div class="progress-bar" style="width: calc(85% - 14px);">
-                  <span>85%</span>
-                </div>
-              </div>
-            </div>
-
-            <div class="skill-item">
-              <p>Python</p>
-              <div class="progress inner-shadow">
-                <div class="progress-bar" style="width: calc(80% - 14px);">
-                  <span>80%</span>
-                </div>
-              </div>
-            </div>
-
-            <div class="skill-item">
-              <p>Mongo DB</p>
-              <div class="progress inner-shadow">
-                <div class="progress-bar" style="width: calc(65% - 14px);">
-                  <span>65%</span>
-                </div>
-              </div>
-            </div>
-            <!-- ========== End skills ========== -->
-          </div>
-          <!-- end -->
-        </div>
-      </div>
-      <!-- end  -->
-
-
-        <!-- experience  -->
-        <div class="row">
-          <div class="experience tab-content">
-            <div class="row">
-              <div class="timeline">
-                <div class="row">
-                  <!-- time line items  -->
-                  <div class="timeline-item">
-                    <div class="timeline-item-inner outer-shadow">
-                      <i class="fas fa-briefcase icon"></i>
-                      <span>Aug, 2021</span>
-                      <h3>Key Verifier Operator</h3>
-                      <b>
-                        <h4>Emprotech Engineering</h4>
-                      </b>
-                      <p>Worked as a Data Entry Operator and Key Verification Operator for 6 Month</p>
-                    </div>
-                  </div>
-                  <!-- end  -->
-                  <!-- time line items  -->
-                  <div class="timeline-item">
-                    <div class="timeline-item-inner outer-shadow">
-                      <i class="fas fa-briefcase icon"></i>
-                      <span>Nov, 2022</span>
-                      <h3>Intern</h3>
-                      <h4>Alynn technologies</h4>
-                      <p>Worked as a Junior Dot Net Developer to gain some hands on experience in technical flieds</p>
-                    </div>
-                  </div>
-                  
-                  <!-- end  -->
-                  <!-- time line items  -->
-                  
-                  
-                  <!-- end  -->
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!--experience end -->
-
-        <!-- education start -->
-        <div class="row">
-          <div class="education tab-content">
-            <div class="row">
-              <div class="timeline">
-                <div class="row">
-                  <!-- time line items  -->
-                  <div class="timeline-item">
-                    <div class="timeline-item-inner outer-shadow">
-                      <i class="fas fa-graduation-cap icon"></i>
-                      <span>2020 - 2023</span>
-                      <h3>Graduation In IT</h3>
-  
-                      <p>Completed my Graduation from Guru Nanak College of Mumbai University, GTB
-                      </p>
-                    </div>
-                  </div>
-                  
-                  <!-- end  -->
-                  <!-- time line items  -->
-                  <div class="timeline-item">
-                    <div class="timeline-item-inner outer-shadow">
-                      <i class="fas fa-graduation-cap icon"></i>
-                      <span>2018 - 2020</span>
-                      <h3>HSC</h3>
-  
-                      <p>Done my HSc from Mumbai University</p>
-                    </div>
-                  </div>
-                  
-                  <!-- end  -->
-                  <!-- time line items  -->
-                  
-                  
-                  <!-- end  -->
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- education end -->
-
-      </div>
-    </section>
-    <!-- end  -->
-
-    <!-- ========== Start service section ========== -->
-
-    <div class="service-section section" id="services">
-      <div class="container">
-        <div class="row">
-          <div class="section-title">
-            <div class="data-heading"></div>
-            <h2>What i do</h2>
-          </div>
-        </div>
-        <div class="row">
-          <!-- ========== Start service item ========== -->
-          <div class="service-item card" data-tilt data-tilt-scale="1.1">
-            <div class="service-item-inner outer-shadow">
-              <div class="icon inner-shadow">
-                <i class="fas fa-mobile-alt"></i>
-              </div>
-              <h3>Dashboard</h3>
-  
-            </div>
-          </div>
-  
-  
-          <div class="service-item card" data-tilt data-tilt-scale="1.1">
-            <div class="service-item-inner outer-shadow">
-              <div class="icon inner-shadow">
-                <i class="fas fa-laptop-code"></i>
-              </div>
-              <h3>Website Development</h3>
-  
-            </div>
-          </div>
-  
-  
-          <div class="service-item card" data-tilt data-tilt-scale="1.1">
-            <div class="service-item-inner outer-shadow">
-              <div class="icon inner-shadow">
-                <i class="fas fa-palette"></i>
-              </div>
-              <h3>UI/UX design</h3>
-  
-            </div>
-          </div>
-  
-          <div class="service-item card" data-tilt data-tilt-scale="1.1">
-            <div class="service-item-inner outer-shadow">
-              <div class="icon inner-shadow">
-                <i class="fas fa-code"></i>
-              </div>
-              <h3>Game Development</h3>
-  
-            </div>
-          </div>
-  
-          <div class="service-item card" data-tilt data-tilt-scale="1.1">
-            <div class="service-item-inner outer-shadow">
-              <div class="icon inner-shadow">
-                <i class="fas fa-search"></i>
-              </div>
-              <h3>Analysis</h3>
-  
-            </div>
-          </div>
-  
-          <div class="service-item card" data-tilt data-tilt-scale="1.1">
-            <div class="service-item-inner outer-shadow">
-              <div class="icon inner-shadow">
-                <i class="fas fa-bullhorn"></i>
-              </div>
-              <h3>App Development</h3>
-  
-            </div>
-          </div>
-
-
-          <!-- ========== End service item ========== -->
-        </div>
-      </div>
-    </div>    
-    <!-- ========== End service section ========== -->
-
-
-    <!-- ========== Start portfolio section ========== -->
-        <section class="portfolio-section section" id="portfolio">
-          <div class="container">
-            <div class="row">
-              <div class="section-title">
-                <div class="data-heading">Works</div>
-                <h2>Latest Works</h2>
-              </div>
-            </div>
-            <!-- ========== Start portfolio filter========== -->
-                <div class="row">
-                  <div class="portfolio-filter">
-                    <span class="filter-item outer-shadow active" data-target="all">All</span>
-                    
-                  </div>
-                </div>
-            <!-- ========== End portfolio filter========== -->
-
-            <!-- ========== Start portfolio items ========== -->
-                <!-- ========== Start portfolio items ========== -->
-      <div class="row portfolio-items">
-        <!-- ========== Start portfolio item ========== -->
-        <div class="portfolio-item" data-category="web-application">
-          <div class="portfolio-item-inner outer-shadow">
-            <div class="portfolio-item-image">
-              <img src="img/Portfolio/p1.png" alt="portfolio"
-                data-screenshots="img/Portfolio/p1.png , img/Portfolio/p1_menu.png , img/Portfolio/p1_g1.png , img/Portfolio/p1_g2.png , img/Portfolio/p1_g3.png">
-
-              <!-- view project button  -->
-              <span class="view-project">view project</span>
-            </div>
-            <p class="portfolio-item-title">Arcadium Game</p>
-            <!-- ========== Start portfolio item details ========== -->
-            <div class="portfolio-item-details">
-              <div class="row">
-                <div class="description">
-                  <h3>Project Working: </h3>
-                  <a href="https://youtu.be/3cBFfoVLvw4" style="color: #d54d66; text-decoration:none">Click here to View Working of Game</a>
-
-                  <h3>Project Documentation: </h3>
-                  <a
-                    href="https://docs.google.com/presentation/d/1PXFWkLqsKTbGidpxSs4sSIUfjOKLpgHq0-ce-POYGOk/edit?usp=sharing" style="color: #d54d66; text-decoration:none">Click
-                    here to see Documentation</a>
-
-                  <h3>Project Downloading Link: </h3>
-                  <a href="https://drive.google.com/file/d/1jB74HUB0PiVTeC5jRfVi_attKwWAPpg8/view?usp=sharing" style="color: #d54d66; text-decoration:none">Click
-                    here to Download Game</a>
-                </div>
-
-              </div>
-            </div>
-            <!-- ========== End portfolio item details ========== -->
-          </div>
-        </div>
-        <!-- ========== End portfolio item ========== -->
-
-
-
-
-        <!-- ========== Start portfolio item ========== -->
-        <div class="portfolio-item" data-category="web-application">
-          <div class="portfolio-item-inner outer-shadow">
-            <div class="portfolio-item-image">
-              <img src="img/Portfolio/p1_g2.png" alt="portfolio" data-screenshots="
-                        img/Portfolio/p1_g2.png
-                        ">
-
-              <!-- view project button  -->
-              <span class="view-project">view project</span>
-            </div>
-            <p class="portfolio-item-title">Flappy Bird Game</p>
-            <!-- ========== Start portfolio item details ========== -->
-            <div class="portfolio-item-details">
-              <div class="row">
-                <div class="description">
-                  <h3>Project Working: </h3>
-                  <a href="https://jagadish64.itch.io/flappy-bird" style="color: #d54d66; text-decoration:none">Click here to Play Game </a>
-
-                </div>
-                <div class="info">
-                  <h3>Information </h3>
-                  <ul>
-                    <li>Maded Using <span>Unity , C# , Blender</span></li>
-                    <li>Year <span>2021</span></li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <!-- ========== End portfolio item details ========== -->
-          </div>
-        </div>
-        <!-- ========== End portfolio item ========== -->
-
-        <!-- ========== Start portfolio item ========== -->
-        <div class="portfolio-item" data-category="web-application">
-          <div class="portfolio-item-inner outer-shadow">
-            <div class="portfolio-item-image">
-              <img src="img/Portfolio/p2.png" alt="portfolio"
-                data-screenshots="img/Portfolio/p2.png , img/Portfolio/p2_menu.png , img/portfolio/p2_g1.png ">
-
-              <!-- view project button  -->
-              <span class="view-project">view project</span>
-            </div>
-            <p class="portfolio-item-title">Cube Runner Game</p>
-            <!-- ========== Start portfolio item details ========== -->
-            <div class="portfolio-item-details">
-              <div class="row">
-                <div class="description">
-                  <h3>Project Working: </h3>
-                  <a href="https://skfarhan.itch.io/cube-game" style="color: #d54d66; text-decoration:none" >Click here to Play Game </a>
-                  <p>PassWord Is_gigachadev6969</p>
-
-                  <h3>Project Documentation: </h3>
-                  <a
-                    href="https://docs.google.com/presentation/d/12AwjfBW_Pxt8eZ8Eg12P84mFZAUaMBJI/edit?usp=sharing&ouid=109722995104603618182&rtpof=true&sd=true" style="color: #d54d66; text-decoration:none">Click
-                    here to see Documentation</a>
-
-                  <h3>Project Downloading Link: </h3>
-                  <a href="https://drive.google.com/file/d/1HYCwKaXkjHmQbCEnc-_6TB33VXGIyioN/view?usp=sharing" style="color: #d54d66; text-decoration:none">Click
-                    here to Download Game</a>
-                </div>
-                <!--
-                <div class="info">
-                  Hlehiueh
-                </div>
-                -->
-              </div>
-            </div>
-            <!-- ========== End portfolio item details ========== -->
-          </div>
-        </div>
-      </div>
-  </section>
-    <!-- ========== End portfolio section ========== -->
-
-    <!-- ========== Start contact section ========== -->
-  <section class="contact-section section" id="contact">
-    <div class="container">
-      <div class="row">
-        <div class="section-title">
-          <div class="data-heading">contact</div>
-          <h2>Get In Touch</h2>
-        </div>
-      </div>
-      <div class="row">
-        <!-- ========== Start contact item ========== -->
-        <div class="contact-item contact-card" data-tilt data-tilt-axis="x" data-tilt data-tilt-scale="1.1">
-          <div class="contact-item-inner outer-shadow">
-            <i class="fas fa-phone">
-              <span class="contact-span">Phone</span>
-              <p class="contact-p">+91 8433646271</p>
-            </i>
-          </div>
-        </div>
-        <!-- ========== End contact item ========== -->
-        <!-- ========== Start contact item ========== -->
-        <div class="contact-item contact-card" data-tilt data-tilt-axis="x" data-tilt data-tilt-scale="1.1">
-          <div class="contact-item-inner outer-shadow">
-            <i class="fas fa-envelope">
-              <span class="contact-span">Email Address</span>
-              <p class="contact-p">Saifmanihar43@gmail.com</p>
-            </i>
-          </div>
-        </div>
-        <!-- ========== End contact item ========== -->
-        <!-- ========== Start contact item ========== -->
-        <div class="contact-item contact-card" data-tilt data-tilt-axis="x" data-tilt data-tilt-scale="1.1">
-          <div class="contact-item-inner outer-shadow">
-            <i class="fas fa-map-marker-alt">
-              <span class="contact-span">Address</span>
-              <p class="contact-p">Mumbai, India</p>
-            </i>
-          </div>
-        </div>
-        <!-- ========== End contact item ========== -->
-      </div>
-      <!-- ========== Start contact from ========== -->
-      <div class="row">
-        <div class="contact-form">
-          <form action="" method="">
-            <div class="row">
-              <div class="w-50">
-                <div class="input-group outer-shadow hover-in-shadow">
-                  <input class="input-control" type="text" name="name" id="name" placeholder="Name" required>
-                </div>
-                <div class="input-group outer-shadow hover-in-shadow">
-                  <input class="input-control" type="email" name="email" id="sender" placeholder="email" required>
-                </div>
-                <div class="input-group outer-shadow hover-in-shadow">
-                  <input class="input-control" type="tel" name="subject" id="subject" placeholder="Subject" required>
-                </div>
-              </div>
-              <div class="w-50">
-                <div class="input-group outer-shadow hover-in-shadow">
-                  <textarea class="input-control" name="user_dtls" id="user_dtls" required
-                    placeholder="Type here..."></textarea>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="submit-btn">
-                <button class="btn-1 outer-shadow outer-shadw hover-in-shadow submit">Send Message</button>
-              </div>
-            </div>
-          </form>
-        </div>
-      </div>
-      <!-- ========== End contact from ========== -->
-    </div>
-  </section>
-  <!-- ========== End contact section ========== -->
-
-    <!-- ========== Start portfolio popup ========== -->
-        <div class="pp portfolio-popup">
-          <div class="pp-details">
-            <div class="pp-details-inner">
-              <div class="pp-title">
-                <h2>personal portfolio</h2>
-                <p>Category - <span class="pp-project-category">Web Application</span></p>
-              </div>
-              <div class="pp-project-details">
-                <div class="row">
-                  <div class="description">
-                    <h3>Project brief: </h3>
-                    <p>Lorem ipsum dolor, sit Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem perferendis corporis culpa! amet consectetur adipisicing elit. Hic doloribus labore assumenda nostrum commodi. Officia. Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt.</p>
-                  </div>
-                  <div class="info">
-                    <h3>Project info</h3>
-                    <ul>
-                      <li>Date - <span>2021</span></li>
-                      <li>Client - <span>xyz</span></li>
-                      <li>Tools - <span>html, css, js</span></li>
-                      <li>Web - <span><a href="#" id="link" id="link" target="_next">www.morsed.com/project_name</a></span></li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="separator"></div>
-
-          <div class="pp-main">
-            <div class="pp-main-inner">
-              <div class="pp-project-details-btn outer-shadow hover-in-shadow">Project Details<i class="fas fa-plus"></i></div>
-              <div class="pp-close outer-shadow hover-in-shadow">&times;</div>
-              <img src="img/Portfolio/large/project-1/1.png" alt="img" class="pp-img outer-shadow">
-              <div class="pp-counter">1 of 6</div>
-            </div>
-            <div class="pp-loader">
-              <div class="loader"></div>
-            </div>
-            <!-- ========== Start pp navigation ========== -->
-            <div class="pp-pre"><i class="fas fa-play"></i></div>
-            <div class="pp-next"><i class="fas fa-play"></i></div>
-            <!-- ========== End pp navigation ========== -->
-          </div>
-        </div>
-    <!-- ========== End portfolio popup ========== -->
-
-    <!-- ========== Start style switciher start - for demo pirposs only ========== -->
-    <div class="style-switcher outer-shadow">
-      
-      <div class="day-night s-icon outer-shadow hover-in-shadow">
-        <i class="fas fa-moon"></i>
-      </div>
-
-      <h4>Theme Color</h4>
-      <div class="colors"> 
-        <span class="color-1" data-tilt data-tilt-scale="1.1" onclick="setActiveStyle('color-1')"></span>
-        <span class="color-2" data-tilt data-tilt-scale="1.1" onclick="setActiveStyle('color-2')"></span>
-        <span class="color-3" data-tilt data-tilt-scale="1.1" onclick="setActiveStyle('color-3')"></span>
-        <span class="color-4" data-tilt data-tilt-scale="1.1" onclick="setActiveStyle('color-4')"></span>
-        <span class="color-5" data-tilt data-tilt-scale="1.1" onclick="setActiveStyle('color-5')"></span>
       </div>
     </div>
-    <!-- ========== End style switciher start - for demo pirposs only ========== -->
-    <!-- main js -->
-    <script src="js/main.js"></script>
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/typed.js/1.1.4/typed.min.js'></script>
-    <!-- style switcher js -->
-    <script src="js/style-switcher.js"></script>
-    <script src="js/animation.js"></script>
-    <script src="js/glassmorphism-animation.js"></script>
-    <script src="js/autoTypingAnimation.js"></script>
-    <script src="https://smtpjs.com/v3/smtp.js"></script>
-    <script>
-      VanillaTilt.init(document.querySelectorAll(".contact-card"), {
-        max: 25,
-        speed: 400
-      });
+  </div>
+</section>
 
-      VanillaTilt.init(document.querySelectorAll(".link-card"), {
-        max: 25,
-        speed: 400
-      });
+<!-- CONTACT -->
+<section id="contact">
+  <div class="sec-line" style="justify-content:center"><span class="sec-num">05 — CONTACT</span></div>
+  <div class="sec-title" style="font-family:'Bebas Neue',sans-serif;font-size:clamp(2.8rem,5vw,4.5rem);letter-spacing:.03em;line-height:1;margin-bottom:1rem">Let's Work Together</div>
+  <p class="sec-sub" style="margin:0 auto 2rem">Actively looking for remote developer roles with US &amp; European companies. Available immediately — zero notice period.</p>
+  <div class="avail-badge">Open to remote opportunities worldwide</div>
+  <div class="contact-row">
+    <a href="mailto:saifmanihar43@gmail.com" class="c-btn"><span class="ci">✉</span>saifmanihar43@gmail.com</a>
+    <a href="tel:+918433646271" class="c-btn"><span class="ci">📞</span>+91-8433646271</a>
+    <a href="https://www.linkedin.com/in/saif-manihar/" target="_blank" class="c-btn"><span class="ci">💼</span>LinkedIn</a>
+    <a href="https://github.com/Saifmanihar" target="_blank" class="c-btn"><span class="ci">⌥</span>GitHub</a>
+  </div>
+  <a href="mailto:saifmanihar43@gmail.com" class="btn-main">Send Me a Message →</a>
+</section>
 
-      VanillaTilt.init(document.querySelectorAll(".card")),{
-        max: 25,
-        speed: 300
-      };
-    </script>
-  </body>
+<!-- FOOTER -->
+<footer>
+  <span>© 2026 <span class="footer-grad">Saif Manihar</span> · Sion, Mumbai 🇮🇳</span>
+  <span>Full Stack Developer · Open to Remote</span>
+  <span><a href="#hero">Back to top ↑</a></span>
+</footer>
+
+<script>
+// Cursor
+const cur=document.getElementById('cur'),circle=document.getElementById('curCircle');
+let mx=0,my=0,cx=0,cy=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.cssText=`left:${mx-4}px;top:${my-4}px`});
+(function move(){cx+=(mx-cx)*.13;cy+=(my-cy)*.13;circle.style.cssText=`left:${cx-20}px;top:${cy-20}px`;requestAnimationFrame(move)})();
+document.querySelectorAll('a,button').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{circle.style.transform='scale(1.6) ';circle.style.borderColor='var(--a1)'});
+  el.addEventListener('mouseleave',()=>{circle.style.transform='scale(1)';circle.style.borderColor='rgba(245,166,35,.5)'});
+});
+
+// Typed text
+const roles=['Full Stack Developer','C# · .NET Core Developer','Angular Developer','PHP · Laravel Developer','Available for Remote Work ✦'];
+let ri=0,ci=0,del=false,el=document.getElementById('typed');
+function tick(){
+  const w=roles[ri];
+  el.textContent=(del?w.slice(0,ci--):w.slice(0,ci++));
+  if(!del&&ci>w.length){setTimeout(()=>del=true,2000);setTimeout(tick,80);return}
+  if(del&&ci<0){del=false;ri=(ri+1)%roles.length;ci=0;setTimeout(tick,400);return}
+  setTimeout(tick,del?35:75);
+}
+tick();
+
+// Count up
+document.querySelectorAll('[data-count]').forEach(el=>{
+  const t=+el.dataset.count;let c=0;
+  const iv=setInterval(()=>{el.textContent=++c;if(c>=t)clearInterval(iv)},25);
+});
+
+// Scroll fade
+const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in')}),{threshold:.08});
+document.querySelectorAll('.fade-up').forEach(el=>obs.observe(el));
+</script>
+</body>
 </html>
